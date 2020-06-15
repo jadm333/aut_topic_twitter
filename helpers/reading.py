@@ -10,8 +10,8 @@ def read_filter_df(f_ini=(datetime.datetime.today() - datetime.timedelta(days=7)
     list_ = []
 
     for file_ in allfiles:
-        df = pd.read_csv(file_, header=0, parse_dates=True, infer_datetime_format=True, index_col=0)
-        screen_name = os.path.splitext(os.path.basename(file_))[0]
+        df = pd.read_csv(file_, header=0, parse_dates=True, infer_datetime_format=True, index_col=0, low_memory=False)
+        # screen_name = os.path.splitext(os.path.basename(file_))[0]
         df['screen_name'] = os.path.splitext(os.path.basename(file_))[0]
         df = df.loc[df['RT_temp'] == 0]
 

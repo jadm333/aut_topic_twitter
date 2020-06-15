@@ -131,3 +131,5 @@ dmypy.json
 # Idea
 .idea/*
 
+# Pickles
+*.pickle
