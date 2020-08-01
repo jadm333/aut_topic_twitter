@@ -24,7 +24,11 @@ def read_filter_df(f_ini=(datetime.datetime.today() - datetime.timedelta(days=7)
         df_time = df_time.loc[df['created_at_datetime'] < f_fin]
         df_empty = df_time.dropna(subset=['text'])
         df_clean = df_empty.drop_duplicates(subset="text", keep='last')
-        list_.append(df_clean)
+        # Filtramos users con pocos tweets
+        if len(df_clean) > 10:
+            list_.append(df_clean)
+        else:
+            print(f"Descartando: {file_} por tener <10 tweets")
     df = pd.concat(list_, ignore_index=True)
 
     return df, f_ini, f_fin
