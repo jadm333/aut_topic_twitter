@@ -8,11 +8,11 @@ dependencies:
         - spacy
         - spacy-lookups-data
         - gensim
-        - ipykernel
         - holoviews
         - hvplot
         - bokeh
         - plotly
+        - scikit-learn
         - pip:
                 - https://github.com/explosion/spacy-models/releases/download/es_core_news_lg-2.3.1/es_core_news_lg-2.3.1.tar.gz#egg=es_core_news_lg
                 - ray[tune]
