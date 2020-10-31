@@ -13,7 +13,9 @@ dependencies:
         - bokeh
         - plotly
         - scikit-learn
+        - ipykernel
         - pip:
                 - https://github.com/explosion/spacy-models/releases/download/es_core_news_lg-2.3.1/es_core_news_lg-2.3.1.tar.gz#egg=es_core_news_lg
                 - ray[tune]
                 - tweet-preprocessor
+                - "git+https://github.com/ZechyW/pyLDAvis.git@pandas-update#egg=pyLDAvis"
