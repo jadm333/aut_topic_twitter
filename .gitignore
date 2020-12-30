@@ -131,9 +131,9 @@ dmypy.json
 # Idea
 .idea/*
 
-# Pickles
-*.pickle
+# # Pickles
+# *.pickle
 
-ray_results/
+# ray_results/
 
 .Rproj.user
