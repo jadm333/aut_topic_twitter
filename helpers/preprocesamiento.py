@@ -41,5 +41,5 @@ def remove_chars(df_raw):
     df_ = df_raw.copy()
     prep.set_options(prep.OPT.URL, prep.OPT.EMOJI, prep.OPT.RESERVED, prep.OPT.SMILEY, prep.OPT.NUMBER)
     df_['text_clean'] = df_['text'].apply(prep.clean)
-    df_["text_clean"] = df_['text_clean'].str.replace(r"[@#!¿\?\'\"\%\+=\`\~|;áàé\‘\“\”\¡ºª▶️.]", '', regex=True)
+    df_["text_clean"] = df_['text_clean'].str.replace(r"[@#!¿\?\'\"\%\+=\`\~|;à\‘\“\”\¡ºª▶️.]", '', regex=True)
     return df_.drop("text", axis=1)
