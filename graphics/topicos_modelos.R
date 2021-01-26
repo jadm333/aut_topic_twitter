@@ -3,6 +3,7 @@ library(tidyverse)
 library(Hmisc)
 library(plotly)
 library("wesanderson")
+library(ggrepel)
 
 topicos_modelos <- read_csv("data/topicos_modelos.csv")
 
@@ -56,6 +57,8 @@ gg = topicos_modelos %>%
     subtitle = "Precision at k (P@k)"
   )
 gg
+
+ggplotly(gg)
 
 topicos_top = topicos_modelos %>% 
   filter(top_autor == 10 & accuracy>0.3) %>% 
@@ -163,7 +166,8 @@ k_means_tsne <- read_csv("data/kmeans_tsne.csv") %>%
 k_means_tsne %>% 
   ggplot(aes(x=x, y=y, color=group, label=author_name )) + 
   geom_point() +
-  geom_text(hjust=0, vjust=0)+
+  # geom_text(hjust=0, vjust=0)+
+  geom_text_repel()+
   labs(
     title = "K-meadias",
     subtitle = "Reducción de dimension via t-SNE"
@@ -183,7 +187,37 @@ similarity_matrix %>%
   theme(axis.text.x = element_text(angle = 90))+
   labs(
     title = "Matriz de similitud",
-    subtitle = "Reducción de dimension via t-SNE",
     x="Autor",
     y="Autor"
+  )
+
+
+################################################
+# UMAP
+df_umap = read_csv("data/df_umap.csv") %>% 
+  mutate(group = factor(group))
+
+df_umap %>% 
+  ggplot(aes(x=x, y=y, color=group, label=author_name )) + 
+  geom_point() +
+  # geom_text(hjust=0, vjust=0)+
+  geom_text_repel(max.overlaps = 30, max.time=60)+
+  labs(
+    title = "Clustering espectral",
+    subtitle = "Reducción de dimension via UMAP"
+  )
+
+################################################
+# UMAP supervisado
+df_umap_supervisado = read_csv("data/df_umap_supervisado.csv") %>% 
+  mutate(group = factor(group))
+
+df_umap_supervisado %>% 
+  ggplot(aes(x=x, y=y, color=group, label=author_name )) + 
+  geom_point() +
+  # geom_text(hjust=0, vjust=0)+
+  geom_text_repel(max.overlaps = 70, max.time=60)+
+  labs(
+    title = "Clustering espectral",
+    subtitle = "Reducción de dimension via UMAP Supervisado"
   )
